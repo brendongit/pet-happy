@@ -1,0 +1,131 @@
+#page-about-location {
+  display: flex;
+  min-height: 100vh;
+}
+
+aside.sidebar {
+  position: fixed;
+  height: 100%;
+  padding: 32px 24px; /* 3.2rem 2.4rem; */
+  background: #2a836b;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+aside.sidebar footer button {
+  width: 48px;
+  height: 48px;
+  border: none;
+  background: #4eaa79;
+  border-radius: 1.6rem;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: background-color 0.2s;
+}
+
+aside.sidebar footer button:hover {
+  background: #58d492;
+}
+
+.with-sidebar {
+  padding-left: 110px;
+}
+
+/* Details */
+
+.location-details {
+  width: 70rem;
+  margin: 6.4rem auto;
+  background: white;
+  border: 1px solid #d3e2e5;
+
+  border-radius: 2rem;
+
+  overflow: hidden;
+}
+
+.location-details > img {
+  width: 100%;
+  height: 30rem;
+  object-fit: cover; /*Aumentar a imagem proporcionalmente*/
+}
+
+.images {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 1.6rem;
+  margin: 16px 40px 0;
+}
+
+.images button {
+  border: 0;
+  background: none;
+
+  height: 8.8rem;
+  cursor: pointer;
+  border-radius: 2rem;
+
+  overflow: hidden; /* Respeita o conteúdo do quadrado c/ border */
+
+  opacity: 0.6;
+}
+
+.images button:hover,
+.images button.active {
+  opacity: 1;
+  transition: opacity 400ms;
+}
+
+.images button img {
+  width: 100%;
+  height: 8.8rem;
+  object-fit: cover;
+}
+
+.location-details-content {
+  padding: 8rem;
+}
+
+.location-details-content h1 {
+  color: #2a836b;
+  font-size: 5.4rem;
+  line-height: 1.5;
+  margin-bottom: 0.8rem;
+}
+
+.location-details-content p {
+  line-height: 1.6;
+  color: #4eaa79;
+  margin-top: 2.4rem;
+}
+
+.map-container {
+  margin-top: 6.4rem;
+  background: #e6f7fb;
+  border: 1px solid #2a836b;
+  border-radius: 2rem;
+}
+
+#mapid {
+  width: 100%;
+  height: 28rem;
+}
+
+.map-container footer {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.map-container footer a {
+  color: #4eaa79;
+  text-decoration: none;
+}
+
+/* VIDEO 2:34:17  -  */
