@@ -25,7 +25,7 @@ const popup = L.popup ({
     className: 'map-popup',
     minWidth: 240,
     minHeight: 240
-}).setContent('Lar dos pets <a href="location.html?id=1" class="choose-location"> <img src="./public/images/arrow-white.svg"> </a>')
+}).setContent('Lar dos pets <a href="about-location.html?id=1" class="choose-location"> <img src="./public/images/arrow-white.svg"> </a>')
 
 // create and add marker
 
