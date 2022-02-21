@@ -1,35 +1,46 @@
 // create map
 
-const map = L.map('mapid').setView([-22.9277209,-43.686198], 12);
-
+const map = L.map("mapid").setView([-22.9277209, -43.686198], 12);
 
 // create and add titleLayer
 
-L.tileLayer(
-    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
-).addTo(map);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
 
 // create icon
 
 const icon = L.icon({
-    iconUrl: "public/images/map-marker.svg",
-    iconSize: [58, 68],
-    iconAnchor: [29, 68],
-    popupAnchor: [170, 2]
-})
+  iconUrl: "/images/map-marker.svg",
+  iconSize: [58, 68],
+  iconAnchor: [29, 68],
+  popupAnchor: [170, 2],
+});
 
-// create popup overlay
+function addMarker({id, name, lat, lng}) {
 
-const popup = L.popup ({
+  // create popup overlay
+
+  const popup = L.popup({
     closeButton: false,
-    className: 'map-popup',
+    className: "map-popup",
     minWidth: 240,
-    minHeight: 240
-}).setContent('Lar dos pets <a href="about-location.html?id=1" class="choose-location"> <img src="./public/images/arrow-white.svg"> </a>')
+    minHeight: 240,
+  }).setContent(
+    `${name} <a href="/about-location?id=${id}"><img src="/images/arrow-white.svg"> </a>`
+  );
 
-// create and add marker
+  // create and add marker
 
-L
-.marker([-22.9277209,-43.686198], { icon })
-.addTo(map)
-.bindPopup(popup)
+  L.marker([lat, lng], { icon }).addTo(map).bindPopup(popup);
+}
+
+const locationSpan = document.querySelectorAll('.location span')
+locationSpan.forEach( span  => {
+    const aboutLocation = {
+        id: span.dataset.id,
+        name: span.dataset.name,
+        lat: span.dataset.lat, 
+        lng: span.dataset.lng
+    }
+    
+    addMarker(aboutLocation)
+})

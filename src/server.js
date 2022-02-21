@@ -1,21 +1,26 @@
 // importar dependência
 
 const express = require('express');
-const path = require('path')
+const path = require('path');
+const pages = require('./pages.js');
 
 // iniciando o express
-
 const server = express()
+server
 
-// criar uma rota
+// utilizando os arquivos estáticos
+.use(express.static('public'))
 
-server.get('/', (request, response) => {
-   // return response.sendFile(__dirname)
-   console.log(__dirname + '/views')
-})
+// configurar template engine
+.set('views', path.join(__dirname, "views"))
+.set('view engine', 'hbs')
+
+// rotas da aplicação
+.get('/', pages.index)
+.get('/location', pages.location)
+.get('/about-location', pages.aboutLocation)
+.get('/create-location', pages.createLocation)
 
 // ligar o servidor
 
 server.listen(5500)
-
-// 43min video
