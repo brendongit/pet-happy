@@ -1,5 +1,5 @@
-const aboutLocation = require('./database/fakedata.js');
-const location = require('./database/fakedata.js');
+const Database = require('./database/db');
+const saveAboutLocation = require('saveAboutLocation');
 
 module.exports = {
 
@@ -8,12 +8,13 @@ module.exports = {
         return res.render('index')
     },
 
-    location(req, res) {
-        return res.render('location', {location})
-    },
-
     aboutLocation(req, res) {
         return res.render('about-location', {aboutLocation})
+    },
+
+    location(req, res) {
+        const selectedLocation = await db.all("SELECT * FROM location")
+        return res.render('location', {location})
     },
 
     createLocation(req, res) {
@@ -21,3 +22,6 @@ module.exports = {
     }
 
 }
+
+
+// 58:44 video
