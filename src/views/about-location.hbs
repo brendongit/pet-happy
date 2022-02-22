@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt_BR">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sobre o lar | Pet Happy</title>
+    <title>{{ aboutLocation.name }} | Pet Happy</title>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -49,47 +49,35 @@
 
     <main class="animate-appear with-sidebar">
       <div class="location-details">
-      <img src="/images/home.jpg" alt="Foto do lar">
+      <img src="{{aboutLocation.firstImage}}" alt="{{aboutLocation.name}}">
       
       <div class="images">
+        {{#each aboutLocation.images}}
         <button onclick="selectImage(event)" class='active' type="button">
-          <img src="https://source.unsplash.com/random?id:1" alt="Foto do lar">
+          <img src="{{this}}" alt="{{aboutLocation.name}}">
         </button>
-
-        <button onclick="selectImage(event)" type="button">
-          <img src="https://source.unsplash.com/random?id:2" alt="Foto do lar">
-        </button>
-
-        <button onclick="selectImage(event)" type="button">
-          <img src="https://source.unsplash.com/random?id:3" alt="Foto do lar">
-        </button>
-
-        <button onclick="selectImage(event)" type="button">
-          <img src="https://source.unsplash.com/random?id:4" alt="Foto do lar">
-        </button>
-
-        <button onclick="selectImage(event)" type="button">
-          <img src="https://source.unsplash.com/random?id:5" alt="Foto do lar">
-        </button>
-
-        <button onclick="selectImage(event)" type="button">
-          <img src="https://source.unsplash.com/random?id:6" alt="Foto do lar">
-        </button>
+        {{/each}}
+        
       </div>
       
 
       <div class="location-details-content">
 
-        <h1>Lar dos pets</h1>
+        <h1>{{aboutLocation.name}}</h1>
 
-        <p>
-          Presta assistência aos pets de pequeno a grande porte que se enconttre em situação de risco e/ou vulnerabilidade social
-        </p>
+        <p>{{ aboutLocation.about }}</p>
 
         <div class="map-container">
           <div id="mapid"></div>
+          <span
+          data-lat="{{aboutLocation.lat}}"
+          data-lng="{{aboutLocation.lng}}"
+          >            
+          </span>
           <footer>
-            <a href="">Ver rotas no Google Maps</a>
+            <a 
+            target="_blank"
+            href="https://maps.google.com/mobile?q={{aboutLocation.lat}},{{aboutLocation.lng}}&z=15">Ver rotas no Google Maps</a>
           </footer>
           </div>
 
@@ -97,23 +85,35 @@
 
         <h2>Instruções para visita</h2>
 
-        <p>Venha conhecer e traga muito amor e paciência para dar</p>
+        <p>{{aboutLocation.instructions}}</p>
 
         <div class="open-details">
           <div class="hour">
             <img src="/images/clock.svg" alt="Horários">
-            Horário de visitas Das 18h até as 20h
+            {{aboutLocation.opening_hours}}
           </div>
-          <div class="open-on-weekends">
+
+            {{#if aboutLocation.open_on_weekends}}
+          <div class="open-on-weekends open">
             <img src="/images/info.svg" alt="Informações">
-            Atendemos aos fins de semana
+            Atendemos fim de semana
           </div>
+            {{else}}
+            <div class="open-on-weekends closed">
+            <img src="/images/info-red.svg" alt="Informações">
+            Não atendemos fim de semana
+            {{/if}}
+        
         </div>
 
-        <button class="primary-button" type="button">
-          <img src="/images/whatsapp.svg" alt="Chamar no whatsapp">
+        <a href="https://api.whatsapp.com/send?l=pt_BR&phone={{aboutLocation.whatsapp}}&text=Olá, {{aboutLocation.name}}, queria saber mais sobre o seu pet" 
+        target="_blank"
+        class="primary-button" type="button">
+          <img 
+          src="/images/whatsapp.svg" 
+          alt="Chamar no whatsapp">
           Entrar em contato
-        </button>
+        </a>
       </div>
     </div>
       </div>

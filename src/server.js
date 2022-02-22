@@ -7,6 +7,8 @@ const pages = require('./pages.js');
 // iniciando o express
 const server = express()
 server
+// utilizar body do req
+.use(express.urlencoded({ extend: true }))
 
 // utilizando os arquivos estáticos
 .use(express.static('public'))
@@ -20,6 +22,7 @@ server
 .get('/location', pages.location)
 .get('/about-location', pages.aboutLocation)
 .get('/create-location', pages.createLocation)
+.post('/saveAboutlocation', pages.saveALocation)
 
 // ligar o servidor
 
