@@ -1,130 +1,121 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ aboutLocation.name }} | Pet Happy</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-   crossorigin=""/>
-     <!-- Make sure you put this AFTER Leaflet's CSS -->
- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
- integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
- crossorigin=""></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ aboutLocation.name }} | Pet Happy</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
 
 
-    <link rel="icon" href="/images/logo-icon.png" />
+  <link rel="icon" href="/images/logo-icon.png" />
 
-    <link rel="stylesheet" href="/css/main.css" />
-    <link rel="stylesheet" href="/css/animations.css" />
-    <link rel="stylesheet" href="/css/sidebar.css" />
-    <link rel="stylesheet" href="/css/map.css" />
-    <link rel="stylesheet" href="/css/buttons.css" />
-    <link rel="stylesheet" href="/css/page-about-location.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
+  <link rel="stylesheet" href="/css/sidebar.css" />
+  <link rel="stylesheet" href="/css/map.css" />
+  <link rel="stylesheet" href="/css/buttons.css" />
+  <link rel="stylesheet" href="/css/page-about-location.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div id="page-about-location">
-      <aside class="animate-right sidebar">
-        
-        <img src="/images/map-marker.svg " alt="Happy">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+</head>
 
-        <footer>
-          <button onclick="history.back()">
-            <img src="/images/arrow-back.svg" alt="Voltar">
-          </button>
-        </footer>
+<body>
+  <div id="page-about-location">
+    <aside class="animate-right sidebar">
 
-      </aside>
+      <img src="/images/map-marker.svg " alt="Happy">
+
+      <footer>
+        <button onclick="history.back()">
+          <img src="/images/arrow-back.svg" alt="Voltar">
+        </button>
+      </footer>
+
+    </aside>
 
     <main class="animate-appear with-sidebar">
       <div class="location-details">
-      <img src="{{aboutLocation.firstImage}}" alt="{{aboutLocation.name}}">
-      
-      <div class="images">
-        {{#each aboutLocation.images}}
-        <button onclick="selectImage(event)" class='active' type="button">
-          <img src="{{this}}" alt="{{aboutLocation.name}}">
-        </button>
-        {{/each}}
-        
-      </div>
-      
+        <img src="{{aboutLocation.firstImage}}" alt="{{aboutLocation.name}}">
 
-      <div class="location-details-content">
+        <div class="images">
+          {{#each aboutLocation.images}}
+          <button onclick="selectImage(event)" class='active' type="button">
+            <img src="{{this}}" alt="{{aboutLocation.name}}">
+          </button>
+          {{/each}}
 
-        <h1>{{aboutLocation.name}}</h1>
-
-        <p>{{ aboutLocation.about }}</p>
-
-        <div class="map-container">
-          <div id="mapid"></div>
-          <span
-          data-lat="{{aboutLocation.lat}}"
-          data-lng="{{aboutLocation.lng}}"
-          >            
-          </span>
-          <footer>
-            <a 
-            target="_blank"
-            href="https://maps.google.com/mobile?q={{aboutLocation.lat}},{{aboutLocation.lng}}&z=15">Ver rotas no Google Maps</a>
-          </footer>
-          </div>
-
-        <hr />
-
-        <h2>Instruções para visita</h2>
-
-        <p>{{aboutLocation.instructions}}</p>
-
-        <div class="open-details">
-          <div class="hour">
-            <img src="/images/clock.svg" alt="Horários">
-            {{aboutLocation.opening_hours}}
-          </div>
-
-            {{#if aboutLocation.open_on_weekends}}
-          <div class="open-on-weekends open">
-            <img src="/images/info.svg" alt="Informações">
-            Atendemos fim de semana
-          </div>
-            {{else}}
-            <div class="open-on-weekends closed">
-            <img src="/images/info-red.svg" alt="Informações">
-            Não atendemos fim de semana
-            {{/if}}
-        
         </div>
 
-        <a href="https://api.whatsapp.com/send?l=pt_BR&phone={{aboutLocation.whatsapp}}&text=Olá, {{aboutLocation.name}}, queria saber mais sobre o seu pet" 
-        target="_blank"
-        class="primary-button" type="button">
-          <img 
-          src="/images/whatsapp.svg" 
-          alt="Chamar no whatsapp">
-          Entrar em contato
-        </a>
-      </div>
-    </div>
+
+        <div class="location-details-content">
+
+          <h1>{{aboutLocation.name}}</h1>
+
+          <p>{{ aboutLocation.about }}</p>
+
+          <div class="map-container">
+            <div id="mapid"></div>
+            <span data-lat="{{aboutLocation.lat}}" data-lng="{{aboutLocation.lng}}">
+            </span>
+            <footer>
+              <a target="_blank"
+                href="https://maps.google.com/mobile?q={{aboutLocation.lat}},{{aboutLocation.lng}}&z=15">Ver rotas no
+                Google Maps</a>
+            </footer>
+          </div>
+
+          <hr />
+
+          <h2>Instruções para visita</h2>
+
+          <p>{{aboutLocation.instructions}}</p>
+
+          <div class="open-details">
+            <div class="hour">
+              <img src="/images/clock.svg" alt="Horários">
+              {{aboutLocation.opening_hours}}
+            </div>
+
+            {{#if aboutLocation.open_on_weekends}}
+            <div class="open-on-weekends open">
+              <img src="/images/info.svg" alt="Informações">
+              Atendemos fim de semana
+            </div>
+            {{else}}
+            <div class="open-on-weekends closed">
+              <img src="/images/info-red.svg" alt="Informações">
+              Não atendemos fim de semana
+              {{/if}}
+
+            </div>
+
+            <a href="https://api.whatsapp.com/send?l=pt_BR&phone={{aboutLocation.whatsapp}}&text=Olá, {{aboutLocation.name}}, queria saber mais sobre o seu pet"
+              target="_blank" class="primary-button" type="button">
+              <img src="/images/whatsapp.svg" alt="Chamar no whatsapp">
+              Entrar em contato
+            </a>
+          </div>
+        </div>
       </div>
     </main>
-    
-    </div>
 
-    <script src="/scripts/page-about-location.js"></script>
+  </div>
 
-  </body>
-  
+  <script src="/scripts/page-about-location.js"></script>
+
+</body>
+
 </html>
-
-

@@ -97,4 +97,3 @@ function validate(event) {
 }
 
 
-// 1:56:25 video

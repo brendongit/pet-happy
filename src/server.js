@@ -22,7 +22,7 @@ server
 .get('/location', pages.location)
 .get('/about-location', pages.aboutLocation)
 .get('/create-location', pages.createLocation)
-.post('/saveAboutlocation', pages.saveALocation)
+.post('/save-about-location', pages.saveAboutLocation)
 
 // ligar o servidor
 

@@ -1,5 +1,5 @@
 const Database = require("./database/db");
-const saveALocation = require("./database/saveAboutLocation");
+const saveAboutLocation = require("./database/saveAboutLocation");
 
 module.exports = {
   index(req, res) {
@@ -46,8 +46,8 @@ module.exports = {
     return res.render("create-location");
   },
 
-  async saveALocation(req, res) {
-    const fields = req.body;
+    async saveAboutLocation(req, res) {
+    const fields = req.body
 
     // validar se todos os campos estao preenchidos
     if (Object.values(fields).includes('')) {
@@ -56,8 +56,8 @@ module.exports = {
 
     try {
       // salvar um local
-      const db = await Database;
-      await saveALocation(db, {
+    const db = await Database;
+    await saveAboutLocation(db, {
         lat: fields.lat,
         lng: fields.lng,
         name: fields.name,
